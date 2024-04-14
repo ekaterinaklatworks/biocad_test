@@ -1,0 +1,21 @@
+import pandas as pd
+
+roles = ['Responsible', 'Accountable', 'Consulted', 'Informed']
+tasks = ['Task1', 'Task2', 'Task3']
+team_members = ['Alice', 'Bob', 'Charlie', 'David']
+
+raci_matrix = pd.DataFrame(index=tasks, columns=roles)
+
+# Assigning team members to roles for each task
+for task in tasks:
+    for role in roles:
+        if role == 'Responsible':
+            raci_matrix.loc[task, role] = team_members[0]
+        elif role == 'Accountable':
+            raci_matrix.loc[task, role] = team_members[1]
+        elif role == 'Consulted':
+            raci_matrix.loc[task, role] = ', '.join(team_members[2:])
+        elif role == 'Informed':
+            raci_matrix.loc[task, role] = ', '.join(team_members)
+
+print(raci_matrix)
